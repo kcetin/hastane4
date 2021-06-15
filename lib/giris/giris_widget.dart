@@ -108,7 +108,7 @@ class _GirisWidgetState extends State<GirisWidget> {
                               color: Color(0xFFEEEEEE),
                             ),
                             child: Container(
-                              height: 50,
+                              height: 45,
                               child: Stack(
                                 children: [
                                   Text(
@@ -124,7 +124,7 @@ class _GirisWidgetState extends State<GirisWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(0, 50, 0, 0),
+                            padding: EdgeInsets.fromLTRB(0, 55, 0, 0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.center,
