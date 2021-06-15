@@ -62,7 +62,7 @@ class _GirisWidgetState extends State<GirisWidget> {
                   padding: EdgeInsets.fromLTRB(0, 300, 0, 0),
                   child: Container(
                     width: MediaQuery.of(context).size.width * 0.95,
-                    height: 220,
+                    height: 240,
                     decoration: BoxDecoration(
                       color: Color(0xFFEEEEEE),
                     ),
@@ -123,17 +123,21 @@ class _GirisWidgetState extends State<GirisWidget> {
                               ),
                             ),
                           ),
-                          Padding(
-                            padding: EdgeInsets.fromLTRB(0, 55, 0, 0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
+                          Container(
+                            width: 100,
+                            height: 100,
+                            decoration: BoxDecoration(
+                              color: Color(0xFFEEEEEE),
+                            ),
+                            child: Stack(
                               children: [
-                                Text(
-                                  'ÇokKolay2021',
-                                  style: FlutterFlowTheme.bodyText2.override(
-                                    fontFamily: 'Poppins',
-                                    fontWeight: FontWeight.w200,
+                                Align(
+                                  alignment: Alignment(0, 0),
+                                  child: Text(
+                                    'ÇokKolay2021',
+                                    style: FlutterFlowTheme.bodyText1.override(
+                                      fontFamily: 'Poppins',
+                                    ),
                                   ),
                                 )
                               ],
