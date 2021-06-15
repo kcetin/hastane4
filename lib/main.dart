@@ -4,11 +4,11 @@ import 'auth/firebase_user_provider.dart';
 import 'package:hastane/phone_sign_page/phone_sign_page_widget.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
-import 'rehber/rehber_widget.dart';
 import 'anasayfa/anasayfa_widget.dart';
-import 'icap/icap_widget.dart';
-import 'giris/giris_widget.dart';
+import 'rehber/rehber_widget.dart';
 import 'nobetci/nobetci_widget.dart';
+import 'nobetci_copy_copy/nobetci_copy_copy_widget.dart';
+import 'giris/giris_widget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -73,23 +73,16 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     final tabs = {
-      'rehber': RehberWidget(),
       'Anasayfa': AnasayfaWidget(),
-      'icap': IcapWidget(),
-      'giris': GirisWidget(),
+      'rehber': RehberWidget(),
       'nobetci': NobetciWidget(),
+      'nobetciCopyCopy': NobetciCopyCopyWidget(),
+      'giris': GirisWidget(),
     };
     return Scaffold(
       body: tabs[_currentPage],
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: FaIcon(
-              FontAwesomeIcons.userFriends,
-              size: 24,
-            ),
-            label: 'Rehber',
-          ),
           BottomNavigationBarItem(
             icon: FaIcon(
               FontAwesomeIcons.home,
@@ -100,6 +93,20 @@ class _NavBarPageState extends State<NavBarPage> {
               size: 28,
             ),
             label: 'Anasayfa',
+          ),
+          BottomNavigationBarItem(
+            icon: FaIcon(
+              FontAwesomeIcons.userFriends,
+              size: 24,
+            ),
+            label: 'Rehber',
+          ),
+          BottomNavigationBarItem(
+            icon: FaIcon(
+              FontAwesomeIcons.moon,
+              size: 24,
+            ),
+            label: 'nöbetci',
           ),
           BottomNavigationBarItem(
             icon: Icon(
@@ -118,13 +125,6 @@ class _NavBarPageState extends State<NavBarPage> {
               size: 24,
             ),
             label: 'Giriş',
-          ),
-          BottomNavigationBarItem(
-            icon: FaIcon(
-              FontAwesomeIcons.moon,
-              size: 24,
-            ),
-            label: 'nöbetci',
           )
         ],
         backgroundColor: Colors.white,

@@ -4,14 +4,14 @@ import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class RehberWidget extends StatefulWidget {
-  RehberWidget({Key key}) : super(key: key);
+class NobetciCopyCopyWidget extends StatefulWidget {
+  NobetciCopyCopyWidget({Key key}) : super(key: key);
 
   @override
-  _RehberWidgetState createState() => _RehberWidgetState();
+  _NobetciCopyCopyWidgetState createState() => _NobetciCopyCopyWidgetState();
 }
 
-class _RehberWidgetState extends State<RehberWidget> {
+class _NobetciCopyCopyWidgetState extends State<NobetciCopyCopyWidget> {
   TextEditingController textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
