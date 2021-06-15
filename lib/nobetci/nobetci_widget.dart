@@ -4,14 +4,14 @@ import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class NbtcWidget extends StatefulWidget {
-  NbtcWidget({Key key}) : super(key: key);
+class NobetciWidget extends StatefulWidget {
+  NobetciWidget({Key key}) : super(key: key);
 
   @override
-  _NbtcWidgetState createState() => _NbtcWidgetState();
+  _NobetciWidgetState createState() => _NobetciWidgetState();
 }
 
-class _NbtcWidgetState extends State<NbtcWidget> {
+class _NobetciWidgetState extends State<NobetciWidget> {
   TextEditingController textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 

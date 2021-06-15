@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 
-class AcilisWidget extends StatefulWidget {
-  AcilisWidget({Key key}) : super(key: key);
+class GirisWidget extends StatefulWidget {
+  GirisWidget({Key key}) : super(key: key);
 
   @override
-  _AcilisWidgetState createState() => _AcilisWidgetState();
+  _GirisWidgetState createState() => _GirisWidgetState();
 }
 
-class _AcilisWidgetState extends State<AcilisWidget> {
+class _GirisWidgetState extends State<GirisWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -62,7 +62,7 @@ class _AcilisWidgetState extends State<AcilisWidget> {
                   padding: EdgeInsets.fromLTRB(0, 300, 0, 0),
                   child: Container(
                     width: MediaQuery.of(context).size.width * 0.95,
-                    height: 300,
+                    height: 280,
                     decoration: BoxDecoration(
                       color: Color(0xFFEEEEEE),
                     ),
@@ -114,7 +114,7 @@ class _AcilisWidgetState extends State<AcilisWidget> {
                             ],
                           ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(0, 150, 0, 0),
+                            padding: EdgeInsets.fromLTRB(0, 120, 0, 0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.center,

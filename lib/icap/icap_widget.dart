@@ -7,14 +7,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 
-class YonetimWidget extends StatefulWidget {
-  YonetimWidget({Key key}) : super(key: key);
+class IcapWidget extends StatefulWidget {
+  IcapWidget({Key key}) : super(key: key);
 
   @override
-  _YonetimWidgetState createState() => _YonetimWidgetState();
+  _IcapWidgetState createState() => _IcapWidgetState();
 }
 
-class _YonetimWidgetState extends State<YonetimWidget> {
+class _IcapWidgetState extends State<IcapWidget> {
   TextEditingController textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
