@@ -5,10 +5,10 @@ import 'package:hastane/phone_sign_page/phone_sign_page_widget.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'anasayfa/anasayfa_widget.dart';
-import 'rehber/rehber_widget.dart';
-import 'nobetci/nobetci_widget.dart';
-import 'nobetci_copy_copy/nobetci_copy_copy_widget.dart';
 import 'giris/giris_widget.dart';
+import 'nobetci/nobetci_widget.dart';
+import 'rehber/rehber_widget.dart';
+import 'icapci/icapci_widget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -74,10 +74,10 @@ class _NavBarPageState extends State<NavBarPage> {
   Widget build(BuildContext context) {
     final tabs = {
       'Anasayfa': AnasayfaWidget(),
-      'rehber': RehberWidget(),
-      'nobetci': NobetciWidget(),
-      'nobetciCopyCopy': NobetciCopyCopyWidget(),
       'giris': GirisWidget(),
+      'nobetci': NobetciWidget(),
+      'rehber': RehberWidget(),
+      'icapci': IcapciWidget(),
     };
     return Scaffold(
       body: tabs[_currentPage],
@@ -95,27 +95,6 @@ class _NavBarPageState extends State<NavBarPage> {
             label: 'Anasayfa',
           ),
           BottomNavigationBarItem(
-            icon: FaIcon(
-              FontAwesomeIcons.userFriends,
-              size: 24,
-            ),
-            label: 'Rehber',
-          ),
-          BottomNavigationBarItem(
-            icon: FaIcon(
-              FontAwesomeIcons.moon,
-              size: 24,
-            ),
-            label: 'nöbetci',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.alarm,
-              size: 24,
-            ),
-            label: 'İcapcı',
-          ),
-          BottomNavigationBarItem(
             icon: Icon(
               Icons.blur_on_outlined,
               size: 24,
@@ -125,6 +104,27 @@ class _NavBarPageState extends State<NavBarPage> {
               size: 24,
             ),
             label: 'Giriş',
+          ),
+          BottomNavigationBarItem(
+            icon: FaIcon(
+              FontAwesomeIcons.moon,
+              size: 24,
+            ),
+            label: 'nöbetci',
+          ),
+          BottomNavigationBarItem(
+            icon: FaIcon(
+              FontAwesomeIcons.userFriends,
+              size: 24,
+            ),
+            label: 'Rehber',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.alarm,
+              size: 24,
+            ),
+            label: 'İcapcı',
           )
         ],
         backgroundColor: Colors.white,

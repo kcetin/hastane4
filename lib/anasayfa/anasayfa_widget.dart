@@ -24,7 +24,7 @@ class _AnasayfaWidgetState extends State<AnasayfaWidget> {
         backgroundColor: FlutterFlowTheme.tertiaryColor,
         automaticallyImplyLeading: false,
         title: Text(
-          'Explore',
+          'Aydın Kadın Doğum',
           style: FlutterFlowTheme.title1.override(
             fontFamily: 'Poppins',
           ),

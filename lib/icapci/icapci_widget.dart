@@ -4,14 +4,14 @@ import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class NobetciCopyCopyWidget extends StatefulWidget {
-  NobetciCopyCopyWidget({Key key}) : super(key: key);
+class IcapciWidget extends StatefulWidget {
+  IcapciWidget({Key key}) : super(key: key);
 
   @override
-  _NobetciCopyCopyWidgetState createState() => _NobetciCopyCopyWidgetState();
+  _IcapciWidgetState createState() => _IcapciWidgetState();
 }
 
-class _NobetciCopyCopyWidgetState extends State<NobetciCopyCopyWidget> {
+class _IcapciWidgetState extends State<IcapciWidget> {
   TextEditingController textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -48,7 +48,7 @@ class _NobetciCopyCopyWidgetState extends State<NobetciCopyCopyWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Text(
-                          'Bizim takım',
+                          'İcapcı',
                           style: FlutterFlowTheme.title1.override(
                             fontFamily: 'Poppins',
                             fontSize: 28,

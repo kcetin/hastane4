@@ -48,7 +48,7 @@ class _RehberWidgetState extends State<RehberWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Text(
-                          'Bizim takım',
+                          'Rehber',
                           style: FlutterFlowTheme.title1.override(
                             fontFamily: 'Poppins',
                             fontSize: 28,

@@ -48,7 +48,7 @@ class _NobetciWidgetState extends State<NobetciWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Text(
-                          'Bizim takım',
+                          'Nöbetçi',
                           style: FlutterFlowTheme.title1.override(
                             fontFamily: 'Poppins',
                             fontSize: 28,
