@@ -124,7 +124,7 @@ class _NavBarPageState extends State<NavBarPage> {
               FontAwesomeIcons.moon,
               size: 24,
             ),
-            label: 'nbtc',
+            label: 'nöbetci',
           )
         ],
         backgroundColor: Colors.white,

@@ -22,7 +22,7 @@ class _GirisWidgetState extends State<GirisWidget> {
       backgroundColor: Color(0xFFECF2F2),
       body: SafeArea(
         child: Container(
-          height: MediaQuery.of(context).size.height * 0.85,
+          height: MediaQuery.of(context).size.height * 0.8,
           child: Stack(
             alignment: Alignment(0, 0),
             children: [
@@ -62,14 +62,14 @@ class _GirisWidgetState extends State<GirisWidget> {
                   padding: EdgeInsets.fromLTRB(0, 300, 0, 0),
                   child: Container(
                     width: MediaQuery.of(context).size.width * 0.95,
-                    height: 280,
+                    height: 220,
                     decoration: BoxDecoration(
                       color: Color(0xFFEEEEEE),
                     ),
                     child: Padding(
-                      padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
+                      padding: EdgeInsets.fromLTRB(0, 1, 0, 0),
                       child: Column(
-                        mainAxisSize: MainAxisSize.max,
+                        mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Padding(
@@ -103,40 +103,28 @@ class _GirisWidgetState extends State<GirisWidget> {
                           ),
                           Container(
                             width: double.infinity,
-                            height: 100,
+                            height: 50,
                             decoration: BoxDecoration(
                               color: Color(0xFFEEEEEE),
                             ),
-                            child: Stack(
-                              children: [
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'Aydın Kadın Doğum ve Çocuk Hastalıkları Hastanesi',
-                                      textAlign: TextAlign.center,
-                                      style:
-                                          FlutterFlowTheme.bodyText1.override(
-                                        fontFamily: 'Poppins',
-                                        fontSize: 16,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                Text(
-                                  'Aydın Kadın Doğum ve Çocuk Hastalıkları Hastanesi',
-                                  textAlign: TextAlign.center,
-                                  style: FlutterFlowTheme.bodyText1.override(
-                                    fontFamily: 'Poppins',
-                                    fontSize: 16,
-                                  ),
-                                )
-                              ],
+                            child: Container(
+                              height: 50,
+                              child: Stack(
+                                children: [
+                                  Text(
+                                    'Aydın Kadın Doğum ve Çocuk Hastalıkları Hastanesi',
+                                    textAlign: TextAlign.center,
+                                    style: FlutterFlowTheme.bodyText1.override(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 16,
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(0, 1, 0, 0),
+                            padding: EdgeInsets.fromLTRB(0, 50, 0, 0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.center,

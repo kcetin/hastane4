@@ -30,7 +30,7 @@ class _NobetciWidgetState extends State<NobetciWidget> {
         mainAxisSize: MainAxisSize.max,
         children: [
           Container(
-            height: 140,
+            height: 150,
             decoration: BoxDecoration(
               color: FlutterFlowTheme.tertiaryColor,
               border: Border.all(
@@ -48,7 +48,7 @@ class _NobetciWidgetState extends State<NobetciWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Text(
-                          'My Friends',
+                          'Bizim takım',
                           style: FlutterFlowTheme.title1.override(
                             fontFamily: 'Poppins',
                             fontSize: 28,
@@ -137,13 +137,6 @@ class _NobetciWidgetState extends State<NobetciWidget> {
                           ],
                         ),
                       ),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 6,
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [],
                     ),
                   )
                 ],
