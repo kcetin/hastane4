@@ -101,20 +101,42 @@ class _GirisWidgetState extends State<GirisWidget> {
                               )
                             ],
                           ),
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Text(
-                                'Aydın Kadın Doğum ve Çocuk Hastalıkları Hastanesi',
-                                style: FlutterFlowTheme.bodyText1.override(
-                                  fontFamily: 'Poppins',
-                                  fontWeight: FontWeight.normal,
+                          Container(
+                            width: double.infinity,
+                            height: 100,
+                            decoration: BoxDecoration(
+                              color: Color(0xFFEEEEEE),
+                            ),
+                            child: Stack(
+                              children: [
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'Aydın Kadın Doğum ve Çocuk Hastalıkları Hastanesi',
+                                      textAlign: TextAlign.center,
+                                      style:
+                                          FlutterFlowTheme.bodyText1.override(
+                                        fontFamily: 'Poppins',
+                                        fontSize: 16,
+                                      ),
+                                    )
+                                  ],
                                 ),
-                              )
-                            ],
+                                Text(
+                                  'Aydın Kadın Doğum ve Çocuk Hastalıkları Hastanesi',
+                                  textAlign: TextAlign.center,
+                                  style: FlutterFlowTheme.bodyText1.override(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 16,
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(0, 120, 0, 0),
+                            padding: EdgeInsets.fromLTRB(0, 1, 0, 0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.center,
