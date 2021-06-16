@@ -1,8 +1,10 @@
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../rehber_detail/rehber_detail_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 
 class RehberWidget extends StatefulWidget {
   RehberWidget({Key key}) : super(key: key);
@@ -262,17 +264,32 @@ class _RehberWidgetState extends State<RehberWidget> {
                                     ),
                                     Padding(
                                       padding: EdgeInsets.fromLTRB(0, 0, 8, 0),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Icon(
-                                            Icons.chevron_right_rounded,
-                                            color: Color(0xFF82878C),
-                                            size: 24,
-                                          )
-                                        ],
+                                      child: InkWell(
+                                        onTap: () async {
+                                          await Navigator.push(
+                                            context,
+                                            PageTransition(
+                                              type: PageTransitionType.fade,
+                                              duration:
+                                                  Duration(milliseconds: 0),
+                                              reverseDuration:
+                                                  Duration(milliseconds: 0),
+                                              child: RehberDetailWidget(),
+                                            ),
+                                          );
+                                        },
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Icon(
+                                              Icons.chevron_right_rounded,
+                                              color: Color(0xFF82878C),
+                                              size: 24,
+                                            )
+                                          ],
+                                        ),
                                       ),
                                     )
                                   ],

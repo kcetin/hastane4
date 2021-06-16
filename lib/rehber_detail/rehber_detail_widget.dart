@@ -302,10 +302,6 @@ class _RehberDetailWidgetState extends State<RehberDetailWidget> {
                   ),
                 )
               ],
-            ),
-            Row(
-              mainAxisSize: MainAxisSize.max,
-              children: [],
             )
           ],
         ),
