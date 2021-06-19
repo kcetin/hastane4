@@ -12,6 +12,7 @@ class IcapciWidget extends StatefulWidget {
 }
 
 class _IcapciWidgetState extends State<IcapciWidget> {
+  List<AydinKadinDogumRecord> searchResults = [];
   TextEditingController textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -74,10 +75,22 @@ class _IcapciWidgetState extends State<IcapciWidget> {
                           children: [
                             Padding(
                               padding: EdgeInsets.fromLTRB(4, 0, 4, 0),
-                              child: Icon(
-                                Icons.search,
-                                color: Color(0xFF95A1AC),
-                                size: 24,
+                              child: InkWell(
+                                onTap: () async {
+                                  setState(() => searchResults = null);
+                                  await AydinKadinDogumRecord.search(
+                                    term: textController.text,
+                                    maxResults: 30,
+                                  )
+                                      .then((r) => searchResults = r)
+                                      .onError((_, __) => searchResults = [])
+                                      .whenComplete(() => setState(() {}));
+                                },
+                                child: Icon(
+                                  Icons.search,
+                                  color: Color(0xFF95A1AC),
+                                  size: 24,
+                                ),
                               ),
                             ),
                             Expanded(
@@ -144,8 +157,11 @@ class _IcapciWidgetState extends State<IcapciWidget> {
             ),
           ),
           Expanded(
-            child: StreamBuilder<List<AydinKadinDogumRecord>>(
-              stream: queryAydinKadinDogumRecord(),
+            child: FutureBuilder<List<AydinKadinDogumRecord>>(
+              future: AydinKadinDogumRecord.search(
+                term: textController.text,
+                maxResults: 30,
+              ),
               builder: (context, snapshot) {
                 // Customize what your widget looks like when it's loading.
                 if (!snapshot.hasData) {
@@ -158,7 +174,7 @@ class _IcapciWidgetState extends State<IcapciWidget> {
                   // return Container();
                   // For now, we'll just include some dummy data.
                   listViewAydinKadinDogumRecordList =
-                      createDummyAydinKadinDogumRecord(count: 4);
+                      createDummyAydinKadinDogumRecord(count: 10);
                 }
                 return ListView.builder(
                   padding: EdgeInsets.zero,

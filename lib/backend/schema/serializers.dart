@@ -8,6 +8,8 @@ import 'users_record.dart';
 import 'aydin_kadin_dogum_record.dart';
 import 'hastane_idare_record.dart';
 
+export '../algolia/algolia_manager.dart';
+
 part 'serializers.g.dart';
 
 const kDocumentReferenceField = 'Document__Reference__Field';
@@ -114,4 +116,13 @@ extension GeoPointExtension on LatLng {
 
 extension LatLngExtension on GeoPoint {
   LatLng toLatLng() => LatLng(latitude, longitude);
+}
+
+DocumentReference toRef(String ref) => FirebaseFirestore.instance.doc(ref);
+
+T safeGet<T>(T Function() func) {
+  try {
+    return func();
+  } catch (_) {}
+  return null;
 }

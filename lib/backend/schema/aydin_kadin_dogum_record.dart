@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:built_collection/built_collection.dart';
@@ -56,10 +58,43 @@ abstract class AydinKadinDogumRecord
       .snapshots()
       .map((s) => serializers.deserializeWith(serializer, serializedData(s)));
 
+  static AydinKadinDogumRecord fromAlgolia(AlgoliaObjectSnapshot snapshot) =>
+      AydinKadinDogumRecord(
+        (c) => c
+          ..brans = snapshot.data['brans']
+          ..email = snapshot.data['email']
+          ..id = snapshot.data['id']
+          ..idariGorev = snapshot.data['idariGorev']
+          ..isim = snapshot.data['isim']
+          ..resimUrl = snapshot.data['resimUrl']
+          ..telefon = snapshot.data['telefon']
+          ..reference = AydinKadinDogumRecord.collection.doc(snapshot.objectID),
+      );
+
+  static Future<List<AydinKadinDogumRecord>> search(
+          {String term,
+          FutureOr<LatLng> location,
+          int maxResults,
+          double searchRadiusMeters}) =>
+      FFAlgoliaManager.instance
+          .algoliaQuery(
+            index: 'AydinKadinDogum',
+            term: term,
+            maxResults: maxResults,
+            location: location,
+            searchRadiusMeters: searchRadiusMeters,
+          )
+          .then((r) => r.map(fromAlgolia).toList());
+
   AydinKadinDogumRecord._();
   factory AydinKadinDogumRecord(
           [void Function(AydinKadinDogumRecordBuilder) updates]) =
       _$AydinKadinDogumRecord;
+
+  static AydinKadinDogumRecord getDocumentFromData(
+          Map<String, dynamic> data, DocumentReference reference) =>
+      serializers.deserializeWith(
+          serializer, {...data, kDocumentReferenceField: reference});
 }
 
 Map<String, dynamic> createAydinKadinDogumRecordData({
