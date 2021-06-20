@@ -9,6 +9,7 @@ import 'giris/giris_widget.dart';
 import 'nobetci/nobetci_widget.dart';
 import 'rehber/rehber_widget.dart';
 import 'icapci/icapci_widget.dart';
+import 'nobetci_copy/nobetci_copy_widget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -78,6 +79,7 @@ class _NavBarPageState extends State<NavBarPage> {
       'nobetci': NobetciWidget(),
       'rehber': RehberWidget(),
       'icapci': IcapciWidget(),
+      'nobetciCopy': NobetciCopyWidget(),
     };
     return Scaffold(
       body: tabs[_currentPage],
@@ -125,6 +127,13 @@ class _NavBarPageState extends State<NavBarPage> {
               size: 24,
             ),
             label: 'İcapcı',
+          ),
+          BottomNavigationBarItem(
+            icon: FaIcon(
+              FontAwesomeIcons.moon,
+              size: 24,
+            ),
+            label: 'nöbetci',
           )
         ],
         backgroundColor: Colors.white,
