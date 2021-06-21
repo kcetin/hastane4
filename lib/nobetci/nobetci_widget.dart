@@ -158,132 +158,148 @@ class _NobetciWidgetState extends State<NobetciWidget> {
             ),
           ),
           Expanded(
-            child: Builder(
-              builder: (context) {
-                if (searchResults == null) {
+            child: StreamBuilder<AydinKadinDogumRecord>(
+              stream: AydinKadinDogumRecord.getDocument(
+                  aydinKadinDogumItem.reference),
+              builder: (context, snapshot) {
+                // Customize what your widget looks like when it's loading.
+                if (!snapshot.hasData) {
                   return Center(child: CircularProgressIndicator());
                 }
-                final aydinKadinDogum = searchResults?.toList() ?? [];
-                return ListView.builder(
-                  padding: EdgeInsets.zero,
-                  scrollDirection: Axis.vertical,
-                  itemCount: aydinKadinDogum.length,
-                  itemBuilder: (context, aydinKadinDogumIndex) {
-                    final aydinKadinDogumItem =
-                        aydinKadinDogum[aydinKadinDogumIndex];
-                    return SingleChildScrollView(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
+                final listViewAydinKadinDogumRecord = snapshot.data;
+                return Builder(
+                  builder: (context) {
+                    if (searchResults == null) {
+                      return Center(child: CircularProgressIndicator());
+                    }
+                    final aydinKadinDogum = searchResults?.toList() ?? [];
+                    return ListView.builder(
+                      padding: EdgeInsets.zero,
+                      scrollDirection: Axis.vertical,
+                      itemCount: aydinKadinDogum.length,
+                      itemBuilder: (context, aydinKadinDogumIndex) {
+                        final aydinKadinDogumItem =
+                            aydinKadinDogum[aydinKadinDogumIndex];
+                        return SingleChildScrollView(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Container(
-                                width: MediaQuery.of(context).size.width,
-                                height: 80,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.tertiaryColor,
-                                  border: Border.all(
-                                    color: Color(0xFFC8CED5),
-                                    width: 1,
-                                  ),
-                                ),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.fromLTRB(8, 0, 8, 0),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Container(
-                                            width: 60,
-                                            height: 60,
-                                            clipBehavior: Clip.antiAlias,
-                                            decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                            ),
-                                            child: CachedNetworkImage(
-                                              imageUrl:
-                                                  aydinKadinDogumItem.resimUrl,
-                                            ),
-                                          )
-                                        ],
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Container(
+                                    width: MediaQuery.of(context).size.width,
+                                    height: 80,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.tertiaryColor,
+                                      border: Border.all(
+                                        color: Color(0xFFC8CED5),
+                                        width: 1,
                                       ),
                                     ),
-                                    Expanded(
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Row(
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsets.fromLTRB(8, 0, 8, 0),
+                                          child: Column(
                                             mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
                                             children: [
-                                              Text(
-                                                aydinKadinDogumItem.isim,
-                                                style: FlutterFlowTheme
-                                                    .subtitle1
-                                                    .override(
-                                                  fontFamily: 'Poppins',
-                                                  color: Color(0xFF15212B),
+                                              Container(
+                                                width: 60,
+                                                height: 60,
+                                                clipBehavior: Clip.antiAlias,
+                                                decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                ),
+                                                child: CachedNetworkImage(
+                                                  imageUrl: aydinKadinDogumItem
+                                                      .resimUrl,
                                                 ),
                                               )
                                             ],
                                           ),
-                                          Row(
+                                        ),
+                                        Expanded(
+                                          child: Column(
                                             mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
                                             children: [
-                                              Expanded(
-                                                child: Padding(
-                                                  padding: EdgeInsets.fromLTRB(
-                                                      0, 4, 4, 0),
-                                                  child: Text(
-                                                    aydinKadinDogumItem.brans,
+                                              Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Text(
+                                                    aydinKadinDogumItem.isim,
                                                     style: FlutterFlowTheme
-                                                        .bodyText2
+                                                        .subtitle1
                                                         .override(
                                                       fontFamily: 'Poppins',
-                                                      color: FlutterFlowTheme
-                                                          .primaryColor,
-                                                      fontSize: 12,
-                                                      fontWeight:
-                                                          FontWeight.w500,
+                                                      color: Color(0xFF15212B),
                                                     ),
-                                                  ),
-                                                ),
+                                                  )
+                                                ],
+                                              ),
+                                              Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Expanded(
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsets.fromLTRB(
+                                                              0, 4, 4, 0),
+                                                      child: Text(
+                                                        aydinKadinDogumItem
+                                                            .brans,
+                                                        style: FlutterFlowTheme
+                                                            .bodyText2
+                                                            .override(
+                                                          fontFamily: 'Poppins',
+                                                          color:
+                                                              FlutterFlowTheme
+                                                                  .primaryColor,
+                                                          fontSize: 12,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  )
+                                                ],
                                               )
                                             ],
-                                          )
-                                        ],
-                                      ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsets.fromLTRB(0, 0, 8, 0),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Icon(
+                                                Icons.chevron_right_rounded,
+                                                color: Color(0xFF82878C),
+                                                size: 24,
+                                              )
+                                            ],
+                                          ),
+                                        )
+                                      ],
                                     ),
-                                    Padding(
-                                      padding: EdgeInsets.fromLTRB(0, 0, 8, 0),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Icon(
-                                            Icons.chevron_right_rounded,
-                                            color: Color(0xFF82878C),
-                                            size: 24,
-                                          )
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                ),
+                                  )
+                                ],
                               )
                             ],
-                          )
-                        ],
-                      ),
+                          ),
+                        );
+                      },
                     );
                   },
                 );
