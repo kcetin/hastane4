@@ -6,12 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ResultPageWidget extends StatefulWidget {
-  ResultPageWidget({
-    Key key,
-    this.aktar,
-  }) : super(key: key);
-
-  final String aktar;
+  ResultPageWidget({Key key}) : super(key: key);
 
   @override
   _ResultPageWidgetState createState() => _ResultPageWidgetState();
@@ -150,10 +145,8 @@ class _ResultPageWidgetState extends State<ResultPageWidget> {
             ),
           ),
           Expanded(
-            child: FutureBuilder<List<AydinKadinDogumRecord>>(
-              future: AydinKadinDogumRecord.search(
-                term: widget.aktar,
-              ),
+            child: StreamBuilder<List<AydinKadinDogumRecord>>(
+              stream: queryAydinKadinDogumRecord(),
               builder: (context, snapshot) {
                 // Customize what your widget looks like when it's loading.
                 if (!snapshot.hasData) {
@@ -166,7 +159,7 @@ class _ResultPageWidgetState extends State<ResultPageWidget> {
                   // return Container();
                   // For now, we'll just include some dummy data.
                   listViewAydinKadinDogumRecordList =
-                      createDummyAydinKadinDogumRecord(count: 10);
+                      createDummyAydinKadinDogumRecord(count: 4);
                 }
                 return ListView.builder(
                   padding: EdgeInsets.zero,
@@ -212,7 +205,9 @@ class _ResultPageWidgetState extends State<ResultPageWidget> {
                                               shape: BoxShape.circle,
                                             ),
                                             child: CachedNetworkImage(
-                                              imageUrl: '',
+                                              imageUrl:
+                                                  listViewAydinKadinDogumRecord
+                                                      .resimUrl,
                                             ),
                                           )
                                         ],
@@ -227,41 +222,15 @@ class _ResultPageWidgetState extends State<ResultPageWidget> {
                                           Row(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
-                                              FutureBuilder<
-                                                  List<AydinKadinDogumRecord>>(
-                                                future: AydinKadinDogumRecord
-                                                    .search(
-                                                  term: '\$.isim',
+                                              Text(
+                                                listViewAydinKadinDogumRecord
+                                                    .isim,
+                                                style: FlutterFlowTheme
+                                                    .subtitle1
+                                                    .override(
+                                                  fontFamily: 'Poppins',
+                                                  color: Color(0xFF15212B),
                                                 ),
-                                                builder: (context, snapshot) {
-                                                  // Customize what your widget looks like when it's loading.
-                                                  if (!snapshot.hasData) {
-                                                    return Center(
-                                                        child:
-                                                            CircularProgressIndicator());
-                                                  }
-                                                  List<AydinKadinDogumRecord>
-                                                      textAydinKadinDogumRecordList =
-                                                      snapshot.data;
-                                                  // Customize what your widget looks like with no query results.
-                                                  if (snapshot.data.isEmpty) {
-                                                    // return Container();
-                                                    // For now, we'll just include some dummy data.
-                                                    textAydinKadinDogumRecordList =
-                                                        createDummyAydinKadinDogumRecord(
-                                                            count: 10);
-                                                  }
-                                                  return Text(
-                                                    textAydinKadinDogumRecordList
-                                                        .isim,
-                                                    style: FlutterFlowTheme
-                                                        .subtitle1
-                                                        .override(
-                                                      fontFamily: 'Poppins',
-                                                      color: Color(0xFF15212B),
-                                                    ),
-                                                  );
-                                                },
                                               )
                                             ],
                                           ),

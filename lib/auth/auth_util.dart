@@ -120,5 +120,5 @@ Future verifySmsCode({
 }
 
 DocumentReference get currentUserReference => currentUser?.user != null
-    ? UsersRecord.collection.doc(currentUser.user.uid)
+    ? AydinKadinDogumRecord.collection.doc(currentUser.user.uid)
     : null;

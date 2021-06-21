@@ -55,13 +55,13 @@ Stream<List<T>> queryCollection<T>(
 
 // Creates a Firestore record representing the logged in user if it doesn't yet exist
 Future maybeCreateUser(User user) async {
-  final userRecord = UsersRecord.collection.doc(user.uid);
+  final userRecord = AydinKadinDogumRecord.collection.doc(user.uid);
   final userExists = await userRecord.get().then((u) => u.exists);
   if (userExists) {
     return;
   }
 
-  final userData = createUsersRecordData(
+  final userData = createAydinKadinDogumRecordData(
     email: user.email,
     displayName: user.displayName,
     photoUrl: user.photoURL,
