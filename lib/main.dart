@@ -5,10 +5,11 @@ import 'package:hastane/phone_sign_page/phone_sign_page_widget.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'anasayfa/anasayfa_widget.dart';
-import 'rehber/rehber_widget.dart';
-import 'nobetci/nobetci_widget.dart';
-import 'icapci/icapci_widget.dart';
 import 'giris/giris_widget.dart';
+import 'nobetci/nobetci_widget.dart';
+import 'rehber/rehber_widget.dart';
+import 'icapci/icapci_widget.dart';
+import 'result_page/result_page_widget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -74,10 +75,11 @@ class _NavBarPageState extends State<NavBarPage> {
   Widget build(BuildContext context) {
     final tabs = {
       'Anasayfa': AnasayfaWidget(),
-      'rehber': RehberWidget(),
-      'nobetci': NobetciWidget(),
-      'icapci': IcapciWidget(),
       'giris': GirisWidget(),
+      'nobetci': NobetciWidget(),
+      'rehber': RehberWidget(),
+      'icapci': IcapciWidget(),
+      'ResultPage': ResultPageWidget(),
     };
     return Scaffold(
       body: tabs[_currentPage],
@@ -95,11 +97,15 @@ class _NavBarPageState extends State<NavBarPage> {
             label: 'Anasayfa',
           ),
           BottomNavigationBarItem(
-            icon: FaIcon(
-              FontAwesomeIcons.userFriends,
+            icon: Icon(
+              Icons.blur_on_outlined,
               size: 24,
             ),
-            label: 'Rehber',
+            activeIcon: Icon(
+              Icons.blur_circular_sharp,
+              size: 24,
+            ),
+            label: 'Giriş',
           ),
           BottomNavigationBarItem(
             icon: FaIcon(
@@ -107,6 +113,13 @@ class _NavBarPageState extends State<NavBarPage> {
               size: 24,
             ),
             label: 'nöbetci',
+          ),
+          BottomNavigationBarItem(
+            icon: FaIcon(
+              FontAwesomeIcons.userFriends,
+              size: 24,
+            ),
+            label: 'Rehber',
           ),
           BottomNavigationBarItem(
             icon: Icon(
@@ -117,14 +130,10 @@ class _NavBarPageState extends State<NavBarPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.blur_on_outlined,
+              Icons.alarm,
               size: 24,
             ),
-            activeIcon: Icon(
-              Icons.blur_circular_sharp,
-              size: 24,
-            ),
-            label: 'Giriş',
+            label: '',
           )
         ],
         backgroundColor: Colors.white,

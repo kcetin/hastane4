@@ -1,23 +1,23 @@
-import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../result_page/result_page_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class IcapciWidget extends StatefulWidget {
-  IcapciWidget({Key key}) : super(key: key);
+class ResultPageWidget extends StatefulWidget {
+  ResultPageWidget({
+    Key key,
+    this.aktar,
+  }) : super(key: key);
+
+  final String aktar;
 
   @override
-  _IcapciWidgetState createState() => _IcapciWidgetState();
+  _ResultPageWidgetState createState() => _ResultPageWidgetState();
 }
 
-class _IcapciWidgetState extends State<IcapciWidget> {
-  List<AydinKadinDogumRecord> searchResults = [];
-  AydinKadinDogumRecord pas;
+class _ResultPageWidgetState extends State<ResultPageWidget> {
   TextEditingController textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -54,7 +54,7 @@ class _IcapciWidgetState extends State<IcapciWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Text(
-                          'İcapcı',
+                          'Arama Sonucu',
                           style: FlutterFlowTheme.title1.override(
                             fontFamily: 'Poppins',
                             fontSize: 28,
@@ -80,59 +80,10 @@ class _IcapciWidgetState extends State<IcapciWidget> {
                           children: [
                             Padding(
                               padding: EdgeInsets.fromLTRB(4, 0, 4, 0),
-                              child: InkWell(
-                                onTap: () async {
-                                  setState(() => searchResults = null);
-                                  await AydinKadinDogumRecord.search(
-                                    term: textController.text,
-                                    maxResults: 30,
-                                  )
-                                      .then((r) => searchResults = r)
-                                      .onError((_, __) => searchResults = [])
-                                      .whenComplete(() => setState(() {}));
-                                  final brans = '';
-                                  final email = '';
-                                  final id = 0;
-                                  final idariGorev = '';
-                                  final isim = '';
-                                  final resimUrl = '';
-                                  final telefon = '';
-
-                                  final aydinKadinDogumRecordData =
-                                      createAydinKadinDogumRecordData(
-                                    brans: brans,
-                                    email: email,
-                                    id: id,
-                                    idariGorev: idariGorev,
-                                    isim: isim,
-                                    resimUrl: resimUrl,
-                                    telefon: telefon,
-                                  );
-
-                                  final aydinKadinDogumRecordReference =
-                                      AydinKadinDogumRecord.collection.doc();
-                                  await aydinKadinDogumRecordReference
-                                      .set(aydinKadinDogumRecordData);
-                                  pas =
-                                      AydinKadinDogumRecord.getDocumentFromData(
-                                          aydinKadinDogumRecordData,
-                                          aydinKadinDogumRecordReference);
-                                  await Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => ResultPageWidget(
-                                        aktar: '\$.aktar',
-                                      ),
-                                    ),
-                                  );
-
-                                  setState(() {});
-                                },
-                                child: Icon(
-                                  Icons.search,
-                                  color: Color(0xFF95A1AC),
-                                  size: 24,
-                                ),
+                              child: Icon(
+                                Icons.search,
+                                color: Color(0xFF95A1AC),
+                                size: 24,
                               ),
                             ),
                             Expanded(
@@ -199,8 +150,10 @@ class _IcapciWidgetState extends State<IcapciWidget> {
             ),
           ),
           Expanded(
-            child: StreamBuilder<List<AydinKadinDogumRecord>>(
-              stream: queryAydinKadinDogumRecord(),
+            child: FutureBuilder<List<AydinKadinDogumRecord>>(
+              future: AydinKadinDogumRecord.search(
+                term: widget.aktar,
+              ),
               builder: (context, snapshot) {
                 // Customize what your widget looks like when it's loading.
                 if (!snapshot.hasData) {
@@ -213,7 +166,7 @@ class _IcapciWidgetState extends State<IcapciWidget> {
                   // return Container();
                   // For now, we'll just include some dummy data.
                   listViewAydinKadinDogumRecordList =
-                      createDummyAydinKadinDogumRecord(count: 4);
+                      createDummyAydinKadinDogumRecord(count: 10);
                 }
                 return ListView.builder(
                   padding: EdgeInsets.zero,
@@ -259,9 +212,7 @@ class _IcapciWidgetState extends State<IcapciWidget> {
                                               shape: BoxShape.circle,
                                             ),
                                             child: CachedNetworkImage(
-                                              imageUrl:
-                                                  listViewAydinKadinDogumRecord
-                                                      .resimUrl,
+                                              imageUrl: '',
                                             ),
                                           )
                                         ],
@@ -276,15 +227,41 @@ class _IcapciWidgetState extends State<IcapciWidget> {
                                           Row(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
-                                              Text(
-                                                listViewAydinKadinDogumRecord
-                                                    .isim,
-                                                style: FlutterFlowTheme
-                                                    .subtitle1
-                                                    .override(
-                                                  fontFamily: 'Poppins',
-                                                  color: Color(0xFF15212B),
+                                              FutureBuilder<
+                                                  List<AydinKadinDogumRecord>>(
+                                                future: AydinKadinDogumRecord
+                                                    .search(
+                                                  term: '\$.isim',
                                                 ),
+                                                builder: (context, snapshot) {
+                                                  // Customize what your widget looks like when it's loading.
+                                                  if (!snapshot.hasData) {
+                                                    return Center(
+                                                        child:
+                                                            CircularProgressIndicator());
+                                                  }
+                                                  List<AydinKadinDogumRecord>
+                                                      textAydinKadinDogumRecordList =
+                                                      snapshot.data;
+                                                  // Customize what your widget looks like with no query results.
+                                                  if (snapshot.data.isEmpty) {
+                                                    // return Container();
+                                                    // For now, we'll just include some dummy data.
+                                                    textAydinKadinDogumRecordList =
+                                                        createDummyAydinKadinDogumRecord(
+                                                            count: 10);
+                                                  }
+                                                  return Text(
+                                                    textAydinKadinDogumRecordList
+                                                        .isim,
+                                                    style: FlutterFlowTheme
+                                                        .subtitle1
+                                                        .override(
+                                                      fontFamily: 'Poppins',
+                                                      color: Color(0xFF15212B),
+                                                    ),
+                                                  );
+                                                },
                                               )
                                             ],
                                           ),
