@@ -1,6 +1,7 @@
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -73,25 +74,49 @@ class _IcapciWidgetState extends State<IcapciWidget> {
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(4, 0, 4, 0),
-                              child: InkWell(
-                                onTap: () async {
-                                  setState(() => searchResults = null);
-                                  await AydinKadinDogumRecord.search(
-                                    term: textController.text,
-                                    maxResults: 30,
-                                  )
-                                      .then((r) => searchResults = r)
-                                      .onError((_, __) => searchResults = [])
-                                      .whenComplete(() => setState(() {}));
-                                },
-                                child: Icon(
-                                  Icons.search,
-                                  color: Color(0xFF95A1AC),
-                                  size: 24,
-                                ),
+                            FutureBuilder<List<AydinKadinDogumRecord>>(
+                              future: AydinKadinDogumRecord.search(
+                                term: textController.text,
                               ),
+                              builder: (context, snapshot) {
+                                // Customize what your widget looks like when it's loading.
+                                if (!snapshot.hasData) {
+                                  return Center(
+                                      child: CircularProgressIndicator());
+                                }
+                                List<AydinKadinDogumRecord>
+                                    iconAydinKadinDogumRecordList =
+                                    snapshot.data;
+                                // Customize what your widget looks like with no query results.
+                                if (snapshot.data.isEmpty) {
+                                  // return Container();
+                                  // For now, we'll just include some dummy data.
+                                  iconAydinKadinDogumRecordList =
+                                      createDummyAydinKadinDogumRecord(
+                                          count: 10);
+                                }
+                                return Padding(
+                                  padding: EdgeInsets.fromLTRB(4, 0, 4, 0),
+                                  child: InkWell(
+                                    onTap: () async {
+                                      setState(() => searchResults = null);
+                                      await AydinKadinDogumRecord.search(
+                                        term: textController.text,
+                                        maxResults: 30,
+                                      )
+                                          .then((r) => searchResults = r)
+                                          .onError(
+                                              (_, __) => searchResults = [])
+                                          .whenComplete(() => setState(() {}));
+                                    },
+                                    child: Icon(
+                                      Icons.search,
+                                      color: Color(0xFF95A1AC),
+                                      size: 24,
+                                    ),
+                                  ),
+                                );
+                              },
                             ),
                             Expanded(
                               flex: 10,
@@ -157,11 +182,8 @@ class _IcapciWidgetState extends State<IcapciWidget> {
             ),
           ),
           Expanded(
-            child: FutureBuilder<List<AydinKadinDogumRecord>>(
-              future: AydinKadinDogumRecord.search(
-                term: textController.text,
-                maxResults: 30,
-              ),
+            child: StreamBuilder<List<AydinKadinDogumRecord>>(
+              stream: queryAydinKadinDogumRecord(),
               builder: (context, snapshot) {
                 // Customize what your widget looks like when it's loading.
                 if (!snapshot.hasData) {
@@ -174,7 +196,7 @@ class _IcapciWidgetState extends State<IcapciWidget> {
                   // return Container();
                   // For now, we'll just include some dummy data.
                   listViewAydinKadinDogumRecordList =
-                      createDummyAydinKadinDogumRecord(count: 10);
+                      createDummyAydinKadinDogumRecord(count: 4);
                 }
                 return ListView.builder(
                   padding: EdgeInsets.zero,
@@ -219,9 +241,8 @@ class _IcapciWidgetState extends State<IcapciWidget> {
                                             decoration: BoxDecoration(
                                               shape: BoxShape.circle,
                                             ),
-                                            child: Image.network(
-                                              listViewAydinKadinDogumRecord
-                                                  .resimUrl,
+                                            child: CachedNetworkImage(
+                                              imageUrl: '',
                                             ),
                                           )
                                         ],
